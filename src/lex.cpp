@@ -1,19 +1,20 @@
 #include "../include/lex.hpp"
 #include "../include/fileHandler.hpp"
+#include "../include/compilerException.hpp"
 #include <iostream>
 #include <string>
 #include <cstring>
 
 Lex::Lex() : reservedWords{
-                 {"COS", TokenType::TK_FUNCTION_1},
-                 {"SIN", TokenType::TK_FUNCTION_1},
-                 {"ROUND", TokenType::TK_FUNCTION_1},
-                 {"ABS", TokenType::TK_FUNCTION_1},
-                 {"SQRT", TokenType::TK_FUNCTION_1},
-                 {"TAN", TokenType::TK_FUNCTION_1},
-                 {"LOG", TokenType::TK_FUNCTION_2},
-                 {"PI", TokenType::TK_CONST},
-                 {"E", TokenType::TK_CONST}} {}
+                 {"COS", TokenType::TK_COS},
+                 {"SIN", TokenType::TK_SIN},
+                 {"ROUND", TokenType::TK_ROUND},
+                 {"ABS", TokenType::TK_ABS},
+                 {"SQRT", TokenType::TK_SQRT},
+                 {"TAN", TokenType::TK_TAN},
+                 {"LOG", TokenType::TK_LOG},
+                 {"PI", TokenType::TK_PI},
+                 {"E", TokenType::TK_E}} {}
 
 Lex::Lex(const string &in_file, const string &out_file) : Lex()
 {
@@ -106,7 +107,7 @@ void Lex::scanner()
                 }
                 else
                 {
-                    cout << "Case Default :: else" << endl;
+                    cout << "erro lexico" << endl;
                     exit(-1);
                 }
 

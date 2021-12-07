@@ -9,12 +9,15 @@ QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -pedantic
 SOURCES = $${srcdir}fileHandler.cpp \
           $${srcdir}lex.cpp         \
           $${srcdir}main.cpp        \
-          $${srcdir}token.cpp       
+          $${srcdir}token.cpp       \
+          $${srcdir}syn.cpp         
 
 HEADERS = $${includedir}fileHandler.hpp \
           $${includedir}lex.hpp         \
           $${includedir}token.hpp       \
-		      $${includedir}position.hpp    
+		      $${includedir}position.hpp    \
+          $${includedir}syn.hpp         \
+          $${includedir}compilerException.hpp
 
 TARGET = $${bindir}fjrv_compiler
 

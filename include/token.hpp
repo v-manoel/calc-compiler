@@ -15,9 +15,16 @@ enum TokenType
 	TK_OPERATOR_L1,
 	TK_OPERATOR_L2,
 	TK_OPERATOR_L3,
-	TK_FUNCTION_1,
-	TK_FUNCTION_2,
-	TK_CONST
+	TK_COS,
+	TK_SIN,
+	TK_ROUND,
+	TK_ABS,
+	TK_SQRT,
+	TK_TAN,
+	TK_LOG,
+	TK_PI,
+	TK_E,
+	$
 };
 
 class Token
@@ -63,7 +70,8 @@ public:
 
 	friend ostream &operator<<(ostream &, const Token &);
 
-	static TokenType toTokenType(const string &type_name);
+	static TokenType toTokenType(const string &);
+	static string toString(const TokenType &);
 };
 
 #endif

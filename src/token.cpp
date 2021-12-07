@@ -13,9 +13,15 @@ ostream &operator<<(ostream &os, const Token &tkn)
       "TK_OPERATOR_L1",
       "TK_OPERATOR_L2",
       "TK_OPERATOR_L3",
-      "TK_FUNCTION_1",
-      "TK_FUNCTION_2",
-      "TK_CONST"};
+      "TK_COS",
+      "TK_SIN",
+      "TK_ROUND",
+      "TK_ABS",
+      "TK_SQRT",
+      "TK_TAN",
+      "TK_LOG",
+      "TK_PI",
+      "TK_E"};
   os << "<";
   os << "type: " << tkn_types[tkn.type] << " ";
   os << "lexem: " << tkn.lexem << " ";
@@ -35,9 +41,15 @@ TokenType Token::toTokenType(const string &type_name)
       "TK_OPERATOR_L1",
       "TK_OPERATOR_L2",
       "TK_OPERATOR_L3",
-      "TK_FUNCTION_1",
-      "TK_FUNCTION_2",
-      "TK_CONST"};
+      "TK_COS",
+      "TK_SIN",
+      "TK_ROUND",
+      "TK_ABS",
+      "TK_SQRT",
+      "TK_TAN",
+      "TK_LOG",
+      "TK_PI",
+      "TK_E"};
 
   TokenType tkn_type;
   for (size_t i = 0; i < tkn_types.size(); i++)
@@ -50,4 +62,27 @@ TokenType Token::toTokenType(const string &type_name)
   }
   cout << "TokenType Conversion Error" << endl;
   exit(-1);
+}
+
+static string toString(const TokenType &tkn_type)
+{
+  vector<string> tkn_types = {
+      "TK_NUMBER",
+      "TK_SEPARATOR",
+      "TK_END_DELIMITER",
+      "TK_BEG_DELIMITER",
+      "TK_OPERATOR_L1",
+      "TK_OPERATOR_L2",
+      "TK_OPERATOR_L3",
+      "TK_COS",
+      "TK_SIN",
+      "TK_ROUND",
+      "TK_ABS",
+      "TK_SQRT",
+      "TK_TAN",
+      "TK_LOG",
+      "TK_PI",
+      "TK_E"};
+
+  return tkn_types.at(tkn_type);
 }

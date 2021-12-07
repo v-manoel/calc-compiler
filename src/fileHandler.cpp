@@ -96,12 +96,9 @@ Token *TknHandler::parser(const string &line)
 
 void TknHandler::submmit()
 {
-  content.open(filename, ios::app);
-  if (content.good())
-  {
-    content.close();
-    content.open(filename);
-  }
+
+  content.open(filename, ios::out);
+  
 
   if (!content.is_open())
   {

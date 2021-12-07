@@ -1,6 +1,7 @@
 #include <ostream>
 #include "../include/lex.hpp"
 #include "../include/fileHandler.hpp"
+#include "../include/syn.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -11,10 +12,15 @@ int main(int argc, char *argv[])
 
   scanner->scanner();
   scanner->~Lex();
+  
+  Syn *parser;
+  parser = new Syn(outputFile);
+  parser->parser();
+  parser->~Syn();
+  // cout << "Teste" << endl;
+  // TknHandler tkn_handler(outputFile);
+  // cout << *tkn_handler.getToken() << endl;
 
-  cout << "Teste" << endl;
-  TknHandler tkn_handler(outputFile);
-  cout << *tkn_handler.getToken() << endl;
   return 0;
 }
 
