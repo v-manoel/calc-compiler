@@ -1,5 +1,6 @@
 #include "../include/syn.hpp"
 #include "../include/token.hpp"
+#include "../include/compilerException.hpp"
 #include <map>
 
 using namespace std;
@@ -217,14 +218,11 @@ void Syn::parser()
         break;
 
         default:
-         cout << "Erro Sintatico: simbolo nao reconhecido " << endl;
-         exit(-1);
-        break;
+         throw SynException(*tkn, "you must insert a valid symbols sequence");
+          break;
       }
     }else{
-      // cout << "Erro Sintatico: recebido " << Token::toString(tkn.getType()) << " expected " << Token::toString(TokenType(top.symbol)) << endl;
-      cout << "Erro sintatico" << endl;
-      exit(-1);
+      throw SynException(*tkn, "the parser stack has broken");
     }
   }
 

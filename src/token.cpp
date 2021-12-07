@@ -64,7 +64,7 @@ TokenType Token::toTokenType(const string &type_name)
   exit(-1);
 }
 
-static string toString(const TokenType &tkn_type)
+ostream &operator<<(ostream &os, const TokenType &tkn_type)
 {
   vector<string> tkn_types = {
       "TK_NUMBER",
@@ -83,6 +83,7 @@ static string toString(const TokenType &tkn_type)
       "TK_LOG",
       "TK_PI",
       "TK_E"};
-
-  return tkn_types.at(tkn_type);
+      
+  os << tkn_types.at(tkn_type);
+  return os;
 }

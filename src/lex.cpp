@@ -107,8 +107,7 @@ void Lex::scanner()
                 }
                 else
                 {
-                    cout << "erro lexico" << endl;
-                    exit(-1);
+                    throw LexException(fh_input.getHead(), lexem, "character valid");
                 }
 
                 break;
@@ -141,8 +140,7 @@ void Lex::scanner()
             }
             else
             {
-                cout << "Erro :: Case 2 " << lexem << endl;
-                exit(-1);
+                throw LexException(fh_input.getHead(), lexem, "number");
             }
 
             break;
@@ -215,12 +213,12 @@ void Lex::scanner()
                 }
                 else
                 {
-                    cout << "Erro :: Case 10 " << lexem << endl;
+                    throw LexException(fh_input.getHead(), lexem, "a valid function");
                 }
             }
             else if (lexem.size() > 5)
             {
-                cout << "Erro :: Case 10 " << lexem << endl;
+                throw LexException(fh_input.getHead(), lexem, "a valid function");
             }
 
             break;
@@ -232,7 +230,7 @@ Token Lex::makeToken(const TokenType &_type, const string &_lexem, const Positio
 {
     Token tkn = Token(_type, _lexem, _position);
     fh_output.addToken(tkn);
-    // cout << tkn;
+    // cout << tkn; //print recognized tokens
     return tkn;
 }
 
@@ -278,7 +276,6 @@ TokenType Lex::getReservedWordType(const string &lexem)
         return it->second;
     else
     {
-        cout << "It isn't a reserved word";
-        exit(-1);
+        throw LexException(fh_input.getHead(), lexem, "a valid function");
     }
 }

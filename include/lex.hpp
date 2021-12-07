@@ -6,6 +6,7 @@
 
 #include "token.hpp"
 #include "fileHandler.hpp"
+#include "compilerException.hpp"
 
 class Lex
 {

@@ -4,6 +4,7 @@
 #include <map>
 #include "token.hpp"
 #include "fileHandler.hpp"
+#include "compilerException.hpp"
 #include <stack>
 
 enum ProductionType

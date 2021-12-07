@@ -27,6 +27,8 @@ enum TokenType
 	$
 };
 
+ostream &operator<<(ostream &, const TokenType &);
+
 class Token
 {
 
@@ -71,7 +73,10 @@ public:
 	friend ostream &operator<<(ostream &, const Token &);
 
 	static TokenType toTokenType(const string &);
-	static string toString(const TokenType &);
+
 };
+
+
+
 
 #endif
