@@ -32,14 +32,15 @@ void Lex::scanner()
     string lexem;
     short state = 0;
     char currentChar = ' ';
+    Position lexemPos = Position(0,0);
     while (currentChar != EOF)
     {
 
         switch (state)
         {
         case 0:
+            lexemPos = fh_input.getHead();
             currentChar = getChar(lexem);
-
             switch (currentChar)
             {
             case '.':
@@ -107,7 +108,7 @@ void Lex::scanner()
                 }
                 else
                 {
-                    throw LexException(fh_input.getHead(), lexem, "character valid");
+                    throw LexException(lexemPos, lexem, "character valid");
                 }
 
                 break;
@@ -125,7 +126,7 @@ void Lex::scanner()
             {
                 // retorno do token TK_NUMBER...
                 ungetChar(lexem);
-                makeToken(TokenType::TK_NUMBER, lexem, fh_input.getHead());
+                makeToken(TokenType::TK_NUMBER, lexem, lexemPos);
                 lexem.clear();
                 state = 0;
             }
@@ -140,7 +141,7 @@ void Lex::scanner()
             }
             else
             {
-                throw LexException(fh_input.getHead(), lexem, "number");
+                throw LexException(lexemPos, lexem, "number");
             }
 
             break;
@@ -151,7 +152,7 @@ void Lex::scanner()
             {
                 // retorno do token TK_NUMBER...
                 ungetChar(lexem);
-                makeToken(TokenType::TK_NUMBER, lexem, fh_input.getHead());
+                makeToken(TokenType::TK_NUMBER, lexem, lexemPos);
                 lexem.clear();
                 state = 0;
             }
@@ -159,42 +160,42 @@ void Lex::scanner()
             break;
         case 4:
             // retorno do token TK_OPERATOR_L1...
-            makeToken(TokenType::TK_OPERATOR_L1, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_OPERATOR_L1, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
             break;
         case 5:
             // retorno do token TK_OPERATOR_L2...
-            makeToken(TokenType::TK_OPERATOR_L2, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_OPERATOR_L2, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
             break;
         case 6:
             // retorno do token TK_OPERATOR_L3...
-            makeToken(TokenType::TK_OPERATOR_L3, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_OPERATOR_L3, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
             break;
         case 7:
             // retorno do token TK_SEPARATOR...
-            makeToken(TokenType::TK_SEPARATOR, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_SEPARATOR, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
             break;
         case 8:
             // retorno do token TK_BEG_DELIMITER...
-            makeToken(TokenType::TK_BEG_DELIMITER, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_BEG_DELIMITER, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
             break;
         case 9:
             // retorno do token TK_END_DELIMITER...
-            makeToken(TokenType::TK_END_DELIMITER, lexem, fh_input.getHead());
+            makeToken(TokenType::TK_END_DELIMITER, lexem, lexemPos);
             lexem.clear();
             state = 0;
 
@@ -207,7 +208,7 @@ void Lex::scanner()
                 ungetChar(lexem);
                 if (isReservedWord(lexem))
                 {
-                    makeToken(getReservedWordType(lexem), lexem, fh_input.getHead());
+                    makeToken(getReservedWordType(lexem), lexem, lexemPos);
                     lexem.clear();
                     state = 0;
                 }
